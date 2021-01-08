@@ -1,4 +1,4 @@
-import thenableReject from 'https://raw.githubusercontent.com/vadzim/thenable-reject/master/src/thenable-reject.ts'
+import { thenableReject } from 'https://raw.githubusercontent.com/vadzim/thenable-reject/master/src/thenable-reject.ts'
 
 export async function* websocketData(websocket: WebSocket): AsyncGenerator<unknown, void, void> {
 	for await (const { data } of websocketEvents(websocket)) yield data
