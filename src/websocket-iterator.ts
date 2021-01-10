@@ -40,16 +40,16 @@ export function websocketEvents(websocket: WebSocket, { emitOpen = false } = {})
 	}
 
 	const initSocket = () => {
-		websocket.addEventListener("close", close)
-		websocket.addEventListener("error", pushError)
-		websocket.addEventListener("message", pushEvent)
+		websocket.onclose = close
+		websocket.onerror = pushError
+		websocket.onmessage = pushEvent
 	}
 
 	if (websocket.readyState === WebSocket.CONNECTING) {
-		websocket.addEventListener("open", event => {
+		websocket.onopen = event => {
 			if (emitOpen) pushEvent(event)
 			initSocket()
-		})
+		}
 	} else {
 		initSocket()
 	}
